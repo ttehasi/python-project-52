@@ -10,7 +10,14 @@
             <div class="display-4">Менеджер задач</div>
                 <p class="lead">Менеджер задач - это система управления жизненым циклом задачи</p> 
                 <hr>
-                <a class="btn btn-primary btn-lg" target="_blank" href="https://ru.wikipedia.org/wiki/%D0%9C%D0%B5%D0%BD%D0%B5%D0%B4%D0%B6%D0%BC%D0%B5%D0%BD%D1%82">Больше о менеджменте</a>
+                <a class="btn btn-primary btn-lg" {% if user.is_authenticated %}
+                target="_blank"
+                {% endif %} href="{% if not user.is_authenticated %}
+                {% url "login" %}
+                {% else %}
+                https://ru.wikipedia.org/wiki/%D0%9C%D0%B5%D0%BD%D0%B5%D0%B4%D0%B6%D0%BC%D0%B5%D0%BD%D1%82
+                {% endif %}">{% if not user.is_authenticated %}
+                Войти {% else %}Больше о менеджменте{% endif %}</a>
         </div>
     </div>
 </div>

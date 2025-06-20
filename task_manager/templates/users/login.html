@@ -36,8 +36,16 @@
             {{ form.password }}
             {% endif %}
         </div>
-        <input class="btn btn-primary" type="submit" value="Войти"> 
+        <div class="d-grid">
+            <input class="btn btn-primary" type="submit" value="Войти">
+        </div>
     </form>
+    <div class="container d-flex justify-content-center align-items-center wrapper mt-3">
+        <div>
+            <span class="fw-bolder">или </span>
+            <a href="{% url "user_create" %}" class="fw-bolder">зарегистрируйтесь</a>
+        </div>
+    </div>
 </div>
 
 {% endblock  %}
