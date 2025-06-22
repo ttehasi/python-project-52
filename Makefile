@@ -7,3 +7,10 @@ render-start:
 
 dock-dev-start:
 	docker run -it -p 8000:8000 task_manager:latest
+
+migrate:
+	uv run python manage.py makemigrations
+	uv run python manage.py migrate
+	
+run:
+	uv run python manage.py runserver

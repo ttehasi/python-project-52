@@ -10,4 +10,6 @@ COPY . .
 
 RUN uv sync
 
+RUN make migrate
+
 CMD ["make", "render-start"]
