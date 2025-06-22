@@ -85,7 +85,7 @@ WSGI_APPLICATION = 'task_manager.wsgi.application'
 
 if os.getenv('PROD') == 't':
     DATABASES = {
-        'deafault':{
+        'default':{
             'ENGINE': 'django.db.backends.postgresql',
             'NAME': os.getenv('NAMEDB'),
             'USER': os.getenv('USERDB'),
