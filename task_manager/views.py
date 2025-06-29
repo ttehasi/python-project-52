@@ -1,4 +1,5 @@
 from django.contrib import auth, messages
+from django.http import HttpResponse
 from django.shortcuts import redirect, render
 from django.urls import reverse
 from django.views.generic.base import View
@@ -46,3 +47,10 @@ class LogoutUser(View):
         messages.add_message(request, messages.INFO, 'Вы разлогинены')
         auth.logout(request)
         return redirect(reverse('main_index'))
+    
+    
+class Test(View):
+    def index(request):
+        a = None
+        a.hello() # Creating an error with an invalid line of code
+        return HttpResponse("Hello, world. You're at the pollapp index.")
