@@ -1,4 +1,5 @@
 from django.contrib import messages
+from django.http import HttpResponse
 from django.shortcuts import redirect, render
 from django.urls import reverse
 from django.views.generic.base import View
@@ -146,3 +147,9 @@ class TaskDeleteView(View):
                                  messages.SUCCESS,
                                  'Задача успешно удалена')
         return redirect(reverse('all_tasks'))
+    
+
+def index(request):
+    a = None
+    a.hello() # Creating an error with an invalid line of code
+    return HttpResponse("Hello, world. You're at the pollapp index.")
