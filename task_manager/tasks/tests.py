@@ -2,6 +2,7 @@ from django.contrib.auth import get_user_model
 from django.test import TestCase
 from django.urls import reverse
 
+from task_manager.labels.models import Label
 from task_manager.statuses.models import Status
 from task_manager.tasks.models import Task
 
@@ -21,20 +22,27 @@ class TaskTest(TestCase):
             username='user',
             password='password'
         )
+        self.label = Label.objects.create(name='label')
+        self.label2 = Label.objects.create(name='label2')
+        self.label3 = Label.objects.create(name='label3')
+
         self.status = Status.objects.create(name='status')
         self.status2 = Status.objects.create(name='status2')
         self.task = Task.objects.create(
-            name='task',
+            name='taskop',
             creator=self.user,
             status=self.status,
             executor=self.user,
         )
+        self.task.labels.add(self.label, self.label2)
+
         self.task2 = Task.objects.create(
-            name='task2',
+            name='taskipo',
             creator=self.user2,
             status=self.status2,
             executor=self.user2,
         )
+        self.task2.labels.add(self.label3)
 
         self.task3 = Task.objects.create(
             name='task3',
@@ -42,7 +50,8 @@ class TaskTest(TestCase):
             status=self.status2,
             executor=self.user2,
         )
-        
+        self.task3.labels.add(self.label2, self.label3)
+
     def test_update_task(self):
         data = {
             "name": "taskno1",
@@ -72,3 +81,40 @@ class TaskTest(TestCase):
         
         self.assertEqual(response.status_code, 302)
         self.assertEqual(Task.objects.count(), 2)
+        
+    def test_filter_task_my_tasks(self):
+        data = {
+            'own_task': 'on'
+        }
+        response = self.client.get(reverse('all_tasks'), data)
+        self.assertContains(response, self.task.name)
+        self.assertContains(response, self.task3.name)
+        self.assertNotContains(response, self.task2.name)
+
+    def test_filter_task_labels(self):
+        data = {
+            'labels': self.label.id
+        }
+        response = self.client.get(reverse('all_tasks'), data)
+        self.assertContains(response, self.task.name)
+        self.assertNotContains(response, self.task2.name)
+        self.assertNotContains(response, self.task3.name)
+
+    def test_filter_task_statuses(self):
+        data = {
+            'status': self.status.id
+        }
+        response = self.client.get(reverse('all_tasks'), data)
+        self.assertContains(response, self.task.name)
+        self.assertNotContains(response, self.task2.name)
+        self.assertNotContains(response, self.task3.name)
+
+    def test_filter_task_executor(self):
+        data = {
+            'executor': self.user2.id
+        }
+        response = self.client.get(reverse('all_tasks'), data)
+        self.assertContains(response, self.task2.name)
+        self.assertContains(response, self.task3.name)
+        self.assertNotContains(response, self.task.name)
+
