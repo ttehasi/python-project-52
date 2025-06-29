@@ -16,7 +16,7 @@ run:
 	uv run python manage.py runserver
 
 lint:
-	ruff check
+	uv run ruff check
 
 test:
 	uv run python manage.py test
