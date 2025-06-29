@@ -17,7 +17,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import include, path
 
-from task_manager.views import IndexView, LoginUser, LogoutUser, Test
+from task_manager.views import IndexView, LoginUser, LogoutUser
 
 urlpatterns = [
     path('', IndexView.as_view(), name='main_index'),
@@ -27,6 +27,5 @@ urlpatterns = [
     path('labels/', include('task_manager.labels.urls')),
     path('login/', LoginUser.as_view(), name='login'),
     path('logout/', LogoutUser.as_view(), name='logout'),
-    path('test/', Test.as_view()),
     path('admin/', admin.site.urls),
 ]
