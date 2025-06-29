@@ -1,9 +1,8 @@
 from django.db import models
 
+from task_manager.labels.models import Label
 from task_manager.statuses.models import Status
 from task_manager.users.models import User
-
-# from task_manager.labels.models import Label
 
 
 # Create your models here.
@@ -31,12 +30,12 @@ class Task(models.Model):
         related_name='task_status',
         verbose_name='Статус',
     )
-    # labels = models.ForeignKey(
-    #     Label,
-    #     verbose_name='Метки',
-    #     related_name='task_label',
-    #     blank=True,
-    # )
+    labels = models.ManyToManyField(
+        Label,
+        verbose_name='Метки',
+        related_name='task_label',
+        blank=True,
+    )
 
     class Meta:
         db_table = 'tasks'

@@ -24,7 +24,7 @@ class IndexView(View):
         if executor:
             tasks = tasks.filter(executor_id=executor)
         if labels:
-            tasks = tasks.filter(labels_id=labels)
+            tasks = tasks.filter(labels=labels)
         if own_task == 'on':
             tasks = tasks.filter(creator=request.user)
         form = TaskFilterForm()

@@ -1,7 +1,7 @@
 {% extends "layout.html" %}
 
 {% block content %}
-{{own}}
+
 <div class="container wrapper flex-grow-1">
     <h1 class="my-4">Задачи</h1><a class="btn btn-primary mb-3" href="/tasks/create/" role="button">Создать задачу</a>
     <div class="card mb-3">
@@ -15,10 +15,10 @@
                     <label class="form-label" for="id_executor">Исполнитель</label>
                     {{ form.executor }}
                 </div>
-                {% comment %} <div class="mb-3">
+                <div class="mb-3">
                     <label class="form-label" for="id_label">Метка</label>
                     {{ form.labels }}
-                </div> {% endcomment %}
+                </div>
                 <div class="mb-3">
                     <div class="form-check">
                         {{ form.own_task }}

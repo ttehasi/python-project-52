@@ -1,10 +1,9 @@
 from django import forms
 
+from task_manager.labels.models import Label
 from task_manager.statuses.models import Status
 from task_manager.tasks.models import Task
 from task_manager.users.models import User
-
-# from task_manager.labels.models import Label
 
 
 class TaskFilterForm(forms.Form):
@@ -14,7 +13,7 @@ class TaskFilterForm(forms.Form):
         label='Статус',
         widget=forms.Select(
             attrs={
-                'class': 'form-control',
+                'class': 'form-control form-select',
             }
         )
     )
@@ -24,7 +23,7 @@ class TaskFilterForm(forms.Form):
         label='Исполнитель',
         widget=forms.Select(
             attrs={
-                'class': 'form-control',
+                'class': 'form-control form-select',
             }
         )
     )
@@ -37,16 +36,16 @@ class TaskFilterForm(forms.Form):
             }
         )
     )
-    # labels = forms.ModelChoiceField(
-    #     queryset=Label.objects.all(),
-    #     required=False,
-    #     label='Метка',
-    #     widget=forms.Select(
-    #         attrs={
-    #             'class': 'form-control',
-    #         }
-    #     )
-    # )
+    labels = forms.ModelChoiceField(
+        queryset=Label.objects.all(),
+        required=False,
+        label='Метка',
+        widget=forms.Select(
+            attrs={
+                'class': 'form-control form-select',
+            }
+        )
+    )
     
     
 class TaskForm(forms.ModelForm):
@@ -74,7 +73,7 @@ class TaskForm(forms.ModelForm):
         label='Статус',
         widget=forms.Select(
             attrs={
-                'class': 'form-control',
+                'class': 'form-control form-select',
             }
         )
     )
@@ -84,21 +83,21 @@ class TaskForm(forms.ModelForm):
         required=False,
         widget=forms.Select(
             attrs={
+                'class': 'form-control form-select',
+            }
+        )
+    )
+    labels = forms.ModelMultipleChoiceField(
+        queryset=Label.objects.all(),
+        label='Метки',
+        required=False,
+        widget=forms.SelectMultiple(
+            attrs={
                 'class': 'form-control',
             }
         )
     )
-    # labels = forms.ModelChoiceField(
-    #     queryset=Label.objects.all(),
-    #     label='Метки',
-    #     required=False,
-    #     widget=forms.Select(
-    #         attrs={
-    #             'class': 'form-control',
-    #         }
-    #     )
-    # )
     
     class Meta:
         model = Task
-        fields = ('name', 'description', 'status', 'executor')  # , labels)
+        fields = ('name', 'description', 'status', 'executor', 'labels')

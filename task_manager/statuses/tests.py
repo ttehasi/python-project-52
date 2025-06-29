@@ -7,7 +7,7 @@ from .models import Status
 
 
 # Create your tests here.
-class UserTest(TestCase):
+class StatusTest(TestCase):
     def setUp(self):
         User = get_user_model()
         self.user = User.objects.create_user(
