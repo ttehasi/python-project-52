@@ -4,7 +4,6 @@ from django.urls import reverse
 from django.views.generic.base import View
 
 from .forms import StatusForm
-from .mixins import ExistsTask
 from .models import Status
 
 
@@ -86,7 +85,7 @@ class StatusUpdateView(View):
         )
         
     
-class StatusDeleteView(ExistsTask, View):
+class StatusDeleteView(View):
     def get(self, request, *args, **kwargs):
         status_id = kwargs.get('id')
         status = Status.objects.get(id=status_id)
@@ -99,6 +98,11 @@ class StatusDeleteView(ExistsTask, View):
     def post(self, request, *args, **kwargs):
         status_id = kwargs.get('id')
         status = Status.objects.get(id=status_id)
+        if status.task_status.all():
+            messages.add_message(request,
+                                 messages.ERROR,
+                    'Невозможно удалить статус, потому что он используется')
+            return redirect(reverse('all_statuses'))
         status.delete()
         messages.add_message(request,
                                  messages.SUCCESS,

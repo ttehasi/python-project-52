@@ -100,9 +100,13 @@ class DeleteUser(View):
     def post(self, request, *args, **kwargs):
         user_id = kwargs.get('id')
         user = User.objects.get(id=user_id)
-        if user:
-            user.delete()
+        if user.task_creator.all():
             messages.add_message(request,
-                                 messages.SUCCESS,
-                                 'Пользователь успешно удален')
+                             messages.ERROR,
+            'Пользователь используется и не может быть удален')
+            return redirect(reverse('all_users'))
+        user.delete()
+        messages.add_message(request,
+                                messages.SUCCESS,
+                                'Пользователь успешно удален')
         return redirect(reverse('all_users'))

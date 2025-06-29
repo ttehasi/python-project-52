@@ -7,3 +7,6 @@ class User(AbstractUser):
         db_table = 'users'
         verbose_name = 'Пользователя'
         verbose_name_plural = 'Пользователи'
+    
+    def __str__(self):
+        return self.get_full_name()

@@ -10,3 +10,6 @@ class Status(models.Model):
         db_table = 'statuses'
         verbose_name = 'Статуса'
         verbose_name_plural = 'Статусы'
+    
+    def __str__(self):
+        return self.name
