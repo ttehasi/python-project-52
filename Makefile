@@ -23,6 +23,12 @@ test:
 
 check: lint test
 
+build:
+	./build.sh
+
+collectstatic:
+	uv run manage.py collectstatic --no-input
+
 setup:
 	pip install uv
 	uv sync
