@@ -18,17 +18,18 @@ jobs:
         run: |
           pip install uv
           make install
-          pip install pytest pytest-cov
-
+  
       - name: Make migrations
         run: make migrate
 
-      - name: Run tests with coverage
+      - name: Run linter and pytest
         env:
-          DATABASE_URL: "sqlite:///db.sqlite3"
-          SECRET_KEY: ${{ secrets.SECRET_KEY }}
+            DATABASE_URL: "sqlite:///db.sqlite3"
+            SECRET_KEY: ${{ secrets.SECRET_KEY }}
         run: |
-          pytest --cov=./ --cov-report=xml:coverage.xml
+          pip install coverage
+          coverage run --source='task_manager' manage.py test
+          coverage xml -o coverage.xml
 
       - name: SonarQube Scan
         uses: sonarsource/sonarcloud-github-action@v1
@@ -38,14 +39,3 @@ jobs:
         with:
           args: >
             -Dsonar.python.coverage.reportPaths=coverage.xml
-            -Dsonar.sources=.
-            -Dsonar.exclusions=**/migrations/**,**/tests/**
-      - name: Make migrations
-        run: make migrate
-
-      - name: Run linter and pytest
-        env:
-            DATABASE_URL: "sqlite:///db.sqlite3"
-            SECRET_KEY: ${{ secrets.SECRET_KEY }}
-        run: |
-          make check
