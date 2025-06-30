@@ -22,3 +22,8 @@ test:
 	uv run python manage.py test
 
 check: lint test
+
+setup:
+	pip install uv
+	uv sync
+	make migrate
