@@ -39,8 +39,3 @@ jobs:
         with:
           token: ${{secrets.QLTY_COVERAGE_TOKEN}}
           files: coverage.lcov
-
-      # - name: SonarQube Scan
-      #   uses: SonarSource/sonarqube-scan-action@v5
-      #   env:
-      #     SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}

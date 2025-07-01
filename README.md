@@ -2,6 +2,7 @@
 [![Actions Status](https://github.com/ttehasi/python-project-52/actions/workflows/hexlet-check.yml/badge.svg)](https://github.com/ttehasi/python-project-52/actions)
 [![Coverage](https://github.com/ttehasi/python-project-52/actions/workflows/my-check.yml/badge.svg)](https://github.com/ttehasi/python-project-52/actions/workflows/my-check.yml)
 [![Maintainability](https://sonarcloud.io/api/project_badges/measure?project=ttehasi_python-project-52&metric=sqale_rating)](https://sonarcloud.io/summary/new_code?id=ttehasi_python-project-52)
+[![Code Coverage](https://qlty.sh/badges/79db35e8-a2db-40e4-a4c6-3084c317f74b/test_coverage.svg)](https://qlty.sh/gh/ttehasi/projects/python-project-52)
 
 
 ### [Проект](https://page-analuzerfromtte.onrender.com) на render.com

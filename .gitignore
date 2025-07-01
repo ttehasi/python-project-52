@@ -7,8 +7,10 @@ wheels/
 *.egg-info
 .ruff_cache/
 .pytest_cache/
-.coverage.*
 
 # Virtual environments
 .venv
 .env
+*.sqlite3
+.coverage
+.coverage.*
