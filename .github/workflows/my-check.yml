@@ -32,6 +32,12 @@ jobs:
           uv run coverage run --source='task_manager' manage.py test
           uv run coverage xml -o coverage.xml
 
+      - name: Set up JDK 17
+        uses: actions/setup-java@v3
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+
       - name: SonarQube Scan
         uses: sonarsource/sonarcloud-github-action@v1
         env:
