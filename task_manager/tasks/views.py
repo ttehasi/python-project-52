@@ -27,7 +27,7 @@ class IndexView(View):
             tasks = tasks.filter(labels=labels)
         if own_task == 'on':
             tasks = tasks.filter(creator=request.user)
-        form = TaskFilterForm()
+        form = TaskFilterForm(request.GET)
         return render(
             request,
             'tasks/index.html',
