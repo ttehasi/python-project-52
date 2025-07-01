@@ -32,9 +32,15 @@ jobs:
             SECRET_KEY: ${{ secrets.SECRET_KEY }}
         run: |
           uv run coverage run --source='task_manager' manage.py test --keepdb
-          uv run coverage xml -o coverage.xml
+          uv run coverage lcov -o coverage.lcov
 
-      - name: SonarQube Scan
-        uses: SonarSource/sonarqube-scan-action@v5
-        env:
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+      - name: QLTY_COV  
+        uses: qltysh/qlty-action/coverage@v1
+        with:
+          token: ${{secrets.QLTY_COVERAGE_TOKEN}}
+          files: coverage.lcov
+
+      # - name: SonarQube Scan
+      #   uses: SonarSource/sonarqube-scan-action@v5
+      #   env:
+      #     SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
