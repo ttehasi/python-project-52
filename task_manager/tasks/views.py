@@ -69,7 +69,7 @@ class TaskCreateView(View):
         if form.is_valid():
             task = form.save(commit=False)
             task.creator = request.user
-            task.save()
+            form.save()
             messages.add_message(request,
                                  messages.SUCCESS,
                                  'Задача успешно создана')

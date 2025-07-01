@@ -93,11 +93,11 @@ class TaskForm(forms.ModelForm):
         required=False,
         widget=forms.SelectMultiple(
             attrs={
-                'class': 'form-control',
+                'class': 'form-select',
             }
         )
     )
     
     class Meta:
         model = Task
-        fields = ('name', 'description', 'status', 'executor', 'labels')
+        fields = ('name', 'description', 'labels', 'status', 'executor',)
