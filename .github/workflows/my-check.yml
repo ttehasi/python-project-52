@@ -29,9 +29,8 @@ jobs:
             DATABASE_URL: "sqlite:///db.sqlite3"
             SECRET_KEY: ${{ secrets.SECRET_KEY }}
         run: |
-          pip install coverage
-          coverage run --source='task_manager' manage.py test
-          coverage xml -o coverage.xml
+          uv run coverage run --source='task_manager' manage.py test
+          uv run coverage xml -o coverage.xml
 
       - name: SonarQube Scan
         uses: sonarsource/sonarcloud-github-action@v1
