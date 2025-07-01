@@ -8,21 +8,21 @@
         <div class="card-body bg-light">
             <form class="form-inline center" action="{% url 'all_tasks' %}" method="get">
                 <div class="mb-3">
-                    <label class="form-label" for="id_status">Статус</label>
+                    <label class="form-label" for="{{ form.status.id_for_label }}">Статус</label>
                     {{ form.status }}
                 </div>
                 <div class="mb-3">
-                    <label class="form-label" for="id_executor">Исполнитель</label>
+                    <label class="form-label" for="{{ form.executor.id_for_label }}">Исполнитель</label>
                     {{ form.executor }}
                 </div>
                 <div class="mb-3">
-                    <label class="form-label" for="id_label">Метка</label>
+                    <label class="form-label" for="{{ form.labels.id_for_label }}">Метка</label>
                     {{ form.labels }}
                 </div>
                 <div class="mb-3">
                     <div class="form-check">
                         {{ form.own_task }}
-                        <label class="form-check-label" for="id_self_tasks">Только свои задачи</label>
+                        <label class="form-check-label" for="{{ form.own_task.id_for_label }}">Только свои задачи</label>
                     </div>
                 </div>
                 <div class="d-grid">
