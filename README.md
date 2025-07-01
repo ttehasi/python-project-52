@@ -5,7 +5,7 @@
 [![Code Coverage](https://qlty.sh/badges/79db35e8-a2db-40e4-a4c6-3084c317f74b/test_coverage.svg)](https://qlty.sh/gh/ttehasi/projects/python-project-52)
 
 
-### [Проект](https://page-analuzerfromtte.onrender.com) на render.com
+### [Проект](https://task-manager-tte.onrender.com) на render.com
 ****
 ## Менеджер задач
 ****
